@@ -1,6 +1,8 @@
 import { defaultLogger } from './constants'
 import { WithRedLockParams } from './types'
 
+export type { WithRedLockParams } from './types'
+
 export async function withRedLock<T>({
   resource,
   task,
