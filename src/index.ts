@@ -17,18 +17,19 @@ export async function withRedLock<T>({
   const lockKey = `redLock:${resource}:lock`
   const resultKey = `redLock:${resource}:result`
 
-  const gotLock = await redisClient.set(lockKey, '1', {
-    NX: true,
-    PX: lockTtlMs,
-  })
+  const gotLock = await redisClient.set(lockKey, '1', 'PX', lockTtlMs, 'NX')
 
   if (gotLock) {
     log.debug?.({ lockKey }, `Lock acquired (${lockKey}), running task`)
     try {
       const result = await task()
-      await redisClient.set(resultKey, JSON.stringify(result), {
-        PX: resultTtlMs,
-      })
+      await redisClient.set(
+        resultKey,
+        JSON.stringify(result),
+        'PX',
+        resultTtlMs,
+      )
+
       return result
     } finally {
       await redisClient.del(lockKey)

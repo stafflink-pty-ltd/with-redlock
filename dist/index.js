@@ -7,17 +7,12 @@ async function withRedLock({ resource, task, redisClient, logger = constants_1.d
     const log = logger;
     const lockKey = `redLock:${resource}:lock`;
     const resultKey = `redLock:${resource}:result`;
-    const gotLock = await redisClient.set(lockKey, '1', {
-        NX: true,
-        PX: lockTtlMs,
-    });
+    const gotLock = await redisClient.set(lockKey, '1', 'PX', lockTtlMs, 'NX');
     if (gotLock) {
         (_a = log.debug) === null || _a === void 0 ? void 0 : _a.call(log, { lockKey }, `Lock acquired (${lockKey}), running task`);
         try {
             const result = await task();
-            await redisClient.set(resultKey, JSON.stringify(result), {
-                PX: resultTtlMs,
-            });
+            await redisClient.set(resultKey, JSON.stringify(result), 'PX', resultTtlMs);
             return result;
         }
         finally {

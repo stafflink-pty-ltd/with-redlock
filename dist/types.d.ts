@@ -1,4 +1,4 @@
-import { RedisClientType } from 'redis';
+import IORedis from 'ioredis';
 export interface SimpleLogger {
     debug?: (meta: Record<string, unknown>, message: string) => void;
     info?: (meta: Record<string, unknown>, message: string) => void;
@@ -8,7 +8,7 @@ export interface SimpleLogger {
 export type WithRedLockParams<T> = {
     resource: string;
     task: () => Promise<T>;
-    redisClient: RedisClientType;
+    redisClient: IORedis;
     logger?: SimpleLogger;
     lockTtlMs?: number;
     resultTtlMs?: number;
