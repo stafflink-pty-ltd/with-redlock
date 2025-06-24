@@ -1,0 +1,20 @@
+{
+  "name": "@stafflink/with-redlock",      
+  "version": "0.1.0",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "redis": "^4.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.0.0"
+  }
+}
