@@ -1,0 +1,17 @@
+import { RedisClientType } from 'redis';
+export interface SimpleLogger {
+    debug?: (meta: Record<string, unknown>, message: string) => void;
+    info?: (meta: Record<string, unknown>, message: string) => void;
+    warn?: (meta: Record<string, unknown>, message: string) => void;
+    error?: (meta: Record<string, unknown>, message: string) => void;
+}
+export type WithRedLockParams<T> = {
+    resource: string;
+    task: () => Promise<T>;
+    redisClient: RedisClientType;
+    logger?: SimpleLogger;
+    lockTtlMs?: number;
+    resultTtlMs?: number;
+    pollIntervalMs?: number;
+    pollTimeoutMs?: number;
+};
