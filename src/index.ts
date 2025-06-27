@@ -3,10 +3,23 @@ import { WithRedLockParams } from './types'
 
 export type { WithRedLockParams } from './types'
 
+/**
+ * A simple redlock implementation to prevent multiple processes from running the same task concurrently.
+ * It uses Redis to acquire a lock and store the result of the task.
+ *
+ * @param redisClient - The Redis client instance to use for locking and result storage.
+ * @param resource - The resource name to lock on.
+ * @param task - The task to run.
+ * @param logger - optional: The logger instance.
+ * @param lockTtlMs - optional: The time-to-live for the lock in milliseconds (default 15s).
+ * @param resultTtlMs - optional: The time-to-live for the result in milliseconds (default 10s).
+ * @param pollIntervalMs - optional: The interval to poll for the result in milliseconds (default 100ms).
+ * @param pollTimeoutMs - optional: The timeout for polling in milliseconds (default 15s).
+ */
 export async function withRedLock<T>({
+  redisClient,
   resource,
   task,
-  redisClient,
   logger = defaultLogger,
   lockTtlMs = 15_000,
   resultTtlMs = 10_000,

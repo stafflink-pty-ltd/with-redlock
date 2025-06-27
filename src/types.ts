@@ -8,9 +8,9 @@ export interface SimpleLogger {
 }
 
 export type WithRedLockParams<T> = {
+  redisClient: IORedis
   resource: string
   task: () => Promise<T>
-  redisClient: IORedis
   logger?: SimpleLogger
   lockTtlMs?: number
   resultTtlMs?: number
