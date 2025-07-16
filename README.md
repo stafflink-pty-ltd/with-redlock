@@ -38,3 +38,11 @@ const deleteTableWithLock = (tableId: number) => {
   })
 }
 ```
+
+## Contributing
+
+We welcome issues and pull requests!
+
+- [Report bugs or request features](https://github.com/stafflink-pty-ltd/with-redlock/issues)
+- [Submit Pull Requests](https://github.com/stafflink-pty-ltd/with-redlock/pulls)
+

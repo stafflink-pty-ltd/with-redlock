@@ -23,7 +23,15 @@
     "ts-jest": "^29.4.0",
     "typescript": "^5.8.3"
   },
-  "license": "STAFFLINK",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stafflink-pty-ltd/with-redlock.git"
+  },
+  "bugs": {
+    "url": "https://github.com/stafflink-pty-ltd/with-redlock/issues"
+  },
+  "homepage": "https://github.com/stafflink-pty-ltd/with-redlock#readme",
   "scripts": {
     "build": "tsc",
     "test": "jest --passWithNoTests",
