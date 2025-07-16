@@ -23,7 +23,7 @@
     "ts-jest": "^29.4.0",
     "typescript": "^5.8.3"
   },
-  "license": "STAFFLINK",
+  "license": "MIT",
   "scripts": {
     "build": "tsc",
     "test": "jest --passWithNoTests",

@@ -38,3 +38,7 @@ const deleteTableWithLock = (tableId: number) => {
   })
 }
 ```
+
+## License
+
+MIT © 2025 Regan Smith
